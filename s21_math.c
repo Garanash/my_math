@@ -1,48 +1,15 @@
 #include "s21_math.h"
 
-long double s21_atan(double x) {
-  long int n = 0;
-  int sign1 = 0, sign2 = 0;
-  if (x < 0.0) {
-    x = -x;
-    sign1 = 1;
-  }
-  if (x > 1.0) {
-    x = 1.00 / x;
-    sign2 = 1;
-  }
-  while (x > s21_PI / 12.00) {
-    n++;
-    x = (1.0 / (x + s21_SQRT3)) * ((x * s21_SQRT3) - 1.00);
-  }
-  x = x *
-      (0.55913709 / (1.4087812 + (x * x)) + 0.60310579 - 0.05160454 * (x * x));
-  while (n > 0) {
-    x += s21_PI / 6;
-    n--;
-  }
-  if (sign2) {
-    x = s21_PI / 2.0 - x;
-  }
-  if (sign1) {
-    x = -x;
-  }
-  return x;
-}
-
-int s21_abs(int x) {
-  if (x < 0) x = -x;
-  return x;
-}
-
 long double s21_acos(double x) {
   long double half_pi = s21_PI / 2.0;
   return half_pi - s21_asin(x);
 }
 
+
 long double s21_asin(double x) {
   return (x != 1 && x != -1) ? s21_atan(x / (s21_sqrt((1 - x * x))))
                              : x * s21_PI / 2;
+  printf("111111");
 }
 
 long double s21_ceil(double x) {
